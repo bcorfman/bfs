@@ -1,5 +1,5 @@
 import os
-from app.parser import load_grid, add_border
+from core.parser import load_grid, add_border
 
 
 def test_load_grid():
