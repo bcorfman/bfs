@@ -1,6 +1,6 @@
 import os
 from collections import deque
-from app.parser import load_grid, add_border
+from core.parser import load_grid, add_border
 
 
 class GridSearchProblem:

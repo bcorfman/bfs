@@ -1,4 +1,4 @@
-from app.search import breadth_first_search, GridSearchProblem
+from core.search import breadth_first_search, GridSearchProblem
 
 
 def main():

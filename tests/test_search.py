@@ -1,4 +1,4 @@
-from app.search import GridSearchProblem, breadth_first_search
+from core.search import GridSearchProblem, breadth_first_search
 
 
 def test_bfs_start_and_goal_are_the_same():
