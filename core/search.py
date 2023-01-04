@@ -1,6 +1,7 @@
 import os
 from collections import deque
-from core.parser import load_grid, add_border
+
+from core.parser import add_border, load_grid
 
 
 class GridSearchProblem:
@@ -32,11 +33,12 @@ class GridSearchProblem:
     def getSuccessors(self, state):
         row, col = state
         successors = []
-        for location in [(0, 1), (0, -1), (-1, 0), (1, 0)]:
-            row_dir, col_dir = location
-            new_row = row + row_dir
-            new_col = col + col_dir
-            if self.grid[new_row][new_col] != ' ':
+        for offset in [(0, 1), (0, -1), (-1, 0), (1, 0)]:
+            row_offset, col_offset = offset
+            new_row = row + row_offset
+            new_col = col + col_offset
+            grid_item = self.grid[new_row][new_col]
+            if grid_item != ' ':
                 successors.append((new_row, new_col))
         return successors
 
