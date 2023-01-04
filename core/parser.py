@@ -2,8 +2,10 @@ MAX_GRID_WIDTH = 80
 
 
 def load_grid(**kwargs):
+    grid = []
     with open(kwargs['filename']) as gf:
-        grid = gf.readlines()
+        for line in gf.readlines():
+            grid.append(line.rstrip())
     return grid
 
 
