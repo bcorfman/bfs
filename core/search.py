@@ -4,7 +4,7 @@ from collections import deque
 from core.parser import add_border, load_grid
 
 OFF_GRID = ' '
-PATH_CHAR = '#'
+PATH_CHAR = '>'
 
 
 class GridSearchProblem:
