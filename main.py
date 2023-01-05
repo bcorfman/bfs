@@ -1,4 +1,4 @@
-from core.search import breadth_first_search, GridSearchProblem
+from core.search import GridSearchProblem, breadth_first_search
 
 
 def main():
@@ -7,6 +7,7 @@ def main():
     print(f"Goal: {problem.goal}")
     path = breadth_first_search(problem)
     print(f"Path: {path}")
+    problem.plotSolution(path)
 
 
 if __name__ == '__main__':
