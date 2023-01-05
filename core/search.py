@@ -3,6 +3,9 @@ from collections import deque
 
 from core.parser import add_border, load_grid
 
+OFF_GRID = ' '
+PATH_CHAR = '#'
+
 
 class GridSearchProblem:
     def __init__(self, **kwargs):
@@ -33,14 +36,19 @@ class GridSearchProblem:
     def getSuccessors(self, state):
         row, col = state
         successors = []
-        for offset in [(0, 1), (0, -1), (-1, 0), (1, 0)]:
-            row_offset, col_offset = offset
-            new_row = row + row_offset
-            new_col = col + col_offset
-            grid_item = self.grid[new_row][new_col]
-            if grid_item != ' ':
+        for location in [(0, 1), (0, -1), (-1, 0), (1, 0)]:
+            row_dir, col_dir = location
+            new_row = row + row_dir
+            new_col = col + col_dir
+            if self.grid[new_row][new_col] != OFF_GRID:
                 successors.append((new_row, new_col))
         return successors
+
+    def plotSolution(self, path):
+        for row, col in path[:-1]:
+            self.grid[row] = self.grid[row][:col] + PATH_CHAR + self.grid[row][col+1:]
+        for line in self.grid:
+            print(line.rstrip())
 
 
 def breadth_first_search(problem):

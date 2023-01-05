@@ -7,6 +7,7 @@ def main():
     print(f"Goal: {problem.goal}")
     path = breadth_first_search(problem)
     print(f"Path: {path}")
+    problem.plotSolution(path)
 
 
 if __name__ == '__main__':
