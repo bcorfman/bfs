@@ -1,10 +1,16 @@
-[tool.poetry]
-name = "bfs"
-version = "0.1.0"
-description = "A non-trivial Python DevOps project, implementing search through a grid map."
-authors = ["Brandon Corfman <bcorfman@fastmail.fm>"]
+[tool.briefcase]
+project_name = "bfs"
+bundle="com.mimetyx"
+version = "0.1"
+author = ["Brandon Corfman"] 
+author_email = ["bcorfman@fastmail.fm"]
 license = "MIT"
 readme = "README.md"
+
+[tool.briefcase.app.bfs]
+formal_name = "BreadthFirstSearch"
+description = "A non-trivial Python DevOps project, implementing search through a grid map."
+sources = ['core']
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
@@ -21,3 +27,4 @@ pysnooper = "^1.1.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
