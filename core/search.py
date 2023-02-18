@@ -4,7 +4,11 @@ from collections import deque
 from core.parser import add_border, load_grid
 
 OFF_GRID = ' '
-PATH_CHAR = '>'
+
+class Coord:
+    def __init__(self, elem):
+        self.row = elem[0]
+        self.col = elem[1]
 
 
 class GridSearchProblem:
@@ -13,6 +17,9 @@ class GridSearchProblem:
         self.grid = add_border(load_grid(filename=grid_file))
         self.start = kwargs.get('start') or self._findStart()
         self.goal = kwargs.get('goal') or self._findGoal()
+        _, start_col = self.start
+        _, goal_col = self.goal
+        self.path_char = '<' if goal_col < start_col else '>'
 
     def _findStart(self):
         return self._findElem('S')
@@ -25,7 +32,7 @@ class GridSearchProblem:
             for col, char in enumerate(line):
                 if char == elem:
                     return row, col
-        return None
+        return None, None
 
     def getStartState(self):
         return self.start
@@ -46,7 +53,7 @@ class GridSearchProblem:
 
     def plotSolution(self, path):
         for row, col in path[:-1]:
-            self.grid[row] = self.grid[row][:col] + PATH_CHAR + self.grid[row][col+1:]
+            self.grid[row] = self.grid[row][:col] + self.path_char + self.grid[row][col+1:]
         for line in self.grid:
             print(line.rstrip())
 
