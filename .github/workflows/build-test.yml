@@ -32,4 +32,5 @@ jobs:
           poetry run pytest
           poetry run pytest --cov-branch --cov-report term-missing:skip-covered --cov=core tests/
       - name: PyCharm Python Security Scanner
+        if: matrix.os == "ubuntu-latest"
         uses: tonybaloney/pycharm-security@1.25.1
