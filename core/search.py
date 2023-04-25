@@ -5,6 +5,7 @@ from core.parser import add_border, load_grid
 
 OFF_GRID = ' '
 
+
 class Coord:
     def __init__(self, elem):
         self.row = elem[0]
