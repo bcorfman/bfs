@@ -17,6 +17,7 @@ coverage = "^7.0.2"
 pysnooper = "^1.1.1"
 ipython = "^8.12.0"
 nuitka = {git = "https://github.com/Nuitka/Nuitka.git"}
+pytest-cov = "^4.0.0"
 
 [build-system]
 requires = ["poetry-core"]
