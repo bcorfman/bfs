@@ -31,7 +31,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           poetry run pytest
-          poetry run pytest --cov-branch --cov-report term-missing:skip-covered --cov=core tests/
+          poetry run pytest --cov-branch --cov-report xml term-missing:skip-covered --cov=core tests/
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
           ./codecov -t ${CODECOV_TOKEN}
