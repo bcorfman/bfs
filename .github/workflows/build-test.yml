@@ -31,6 +31,6 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           poetry run pytest
-          poetry run pytest --cov-branch --cov-report xml --cov-report term-missing:skip-covered --cov=core tests/
+          poetry run pytest --cov-branch --cov-report lcov --cov=core tests/
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
