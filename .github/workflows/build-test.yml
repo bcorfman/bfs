@@ -28,7 +28,9 @@ jobs:
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
+        if: matrix.os == 'ubuntu-latest'
         run: |
           poetry run pytest
-      - name: Upload coverage reports to Codecov
+          poetry run pytest --cov-branch --cov-report lcov --cov=core tests/
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
