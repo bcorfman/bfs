@@ -47,6 +47,14 @@ class GridSearchProblem:
     def _changeGridAtCoord(self, x, y, elem):
         self.grid[y] = self.grid[y][:x] + elem + self.grid[y][x + 1:]
 
+    def getGridPoints(self):
+        pts = []
+        for y, line in enumerate(self.grid):
+            for x, char in enumerate(line):
+                if char != OFF_GRID:
+                    pts.append((x, y))
+        return pts
+
     def getStartState(self):
         return self.start
 
