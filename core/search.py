@@ -6,21 +6,30 @@ from core.parser import add_border, load_grid
 OFF_GRID = ' '
 
 
-class Coord:
-    def __init__(self, elem):
-        self.row = elem[0]
-        self.col = elem[1]
-
-
 class GridSearchProblem:
+
     def __init__(self, **kwargs):
         grid_file = kwargs.get('filename') or os.path.join('data', 'grid.txt')
         self.grid = add_border(load_grid(filename=grid_file))
-        self.start = kwargs.get('start') or self._findStart()
-        self.goal = kwargs.get('goal') or self._findGoal()
-        _, start_col = self.start
-        _, goal_col = self.goal
-        self.path_char = '<' if goal_col < start_col else '>'
+        if kwargs.get('start'):
+            x, y = self._findStart()
+            self._changeGridAtCoord(x, y, '*')
+            self.start = kwargs['start']
+            x, y = self.start
+            self._changeGridAtCoord(x, y, 'S')
+        else:
+            self.start = self._findStart()
+        if kwargs.get('goal'):
+            x, y = self._findGoal()
+            self._changeGridAtCoord(x, y, '*')
+            self.goal = kwargs['goal']
+            x, y = self.goal
+            self._changeGridAtCoord(x, y, 'G')
+        else:
+            self.goal = self._findGoal()
+        start_x, _ = self.start
+        goal_x, _ = self.goal
+        self.path_char = '<' if goal_x < start_x else '>'
 
     def _findStart(self):
         return self._findElem('S')
@@ -29,11 +38,14 @@ class GridSearchProblem:
         return self._findElem('G')
 
     def _findElem(self, elem):
-        for row, line in enumerate(self.grid):
-            for col, char in enumerate(line):
+        for y, line in enumerate(self.grid):
+            for x, char in enumerate(line):
                 if char == elem:
-                    return row, col
+                    return x, y
         return None, None
+
+    def _changeGridAtCoord(self, x, y, elem):
+        self.grid[y] = self.grid[y][:x] + elem + self.grid[y][x + 1:]
 
     def getStartState(self):
         return self.start
@@ -42,21 +54,23 @@ class GridSearchProblem:
         return state == self.goal
 
     def getSuccessors(self, state):
-        row, col = state
+        x, y = state
         successors = []
         for location in [(0, 1), (0, -1), (-1, 0), (1, 0)]:
-            row_dir, col_dir = location
-            new_row = row + row_dir
-            new_col = col + col_dir
-            if self.grid[new_row][new_col] != OFF_GRID:
-                successors.append((new_row, new_col))
+            x_dir, y_dir = location
+            new_x = x + x_dir
+            new_y = y + y_dir
+            if self.grid[y][x] != OFF_GRID:
+                successors.append((new_x, new_y))
         return successors
 
     def plotSolution(self, path):
-        for row, col in path[:-1]:
-            self.grid[row] = self.grid[row][:col] + self.path_char + self.grid[row][col+1:]
+        output = ""
+        for x, y in path[:-1]:
+            self._changeGridAtCoord(x, y, self.path_char)
         for line in self.grid:
-            print(line.rstrip())
+            output += line.rstrip() + "\n"
+        return output
 
 
 def breadth_first_search(problem):

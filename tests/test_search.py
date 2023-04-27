@@ -2,21 +2,21 @@ from core.search import GridSearchProblem, breadth_first_search
 
 
 def test_bfs_start_and_goal_are_the_same():
-    problem = GridSearchProblem(start=(7, 15), goal=(7, 15))
+    problem = GridSearchProblem(start=(15, 7), goal=(15, 7))
     path = breadth_first_search(problem)
     assert path == []
 
 
 def test_bfs_one_step():
-    problem = GridSearchProblem(start=(7, 15), goal=(7, 16))
+    problem = GridSearchProblem(start=(15, 7), goal=(16, 7))
     path = breadth_first_search(problem)
-    assert path == [(7, 16)]
+    assert path == [(16, 7)]
 
 
 def test_bfs_multi_step():
-    problem = GridSearchProblem(start=(7, 15), goal=(8, 16))
+    problem = GridSearchProblem(start=(15, 7), goal=(16, 8))
     path = breadth_first_search(problem)
-    assert path == [(7, 16), (8, 16)]
+    assert path == [(15, 8), (16, 8)]
 
 
 def test_bfs_grid_problem():
