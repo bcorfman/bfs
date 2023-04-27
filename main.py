@@ -4,6 +4,9 @@ import streamlit as st
 from core.search import GridSearchProblem, breadth_first_search
 
 st.title("Breadth-first search")
+st.write(
+    "This type of search is complete, but a bit brute-force. However, for small maps, breadth-first search "
+    + "provides quick enough performance.")
 problem = GridSearchProblem()
 st.sidebar.title("Parameters")
 label_col1, label_col2 = st.sidebar.columns(2, gap="small")
