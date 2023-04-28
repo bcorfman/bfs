@@ -1,6 +1,12 @@
 from core.search import GridSearchProblem, breadth_first_search
 
 
+def test_bfs_goal_out_of_bounds():
+    problem = GridSearchProblem(start=(15, 7), goal=(50, 7))
+    path = breadth_first_search(problem)
+    assert path is None
+
+
 def test_bfs_start_and_goal_are_the_same():
     problem = GridSearchProblem(start=(15, 7), goal=(15, 7))
     path = breadth_first_search(problem)
