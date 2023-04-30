@@ -33,4 +33,5 @@ jobs:
           poetry run pytest
           poetry run pytest --cov-branch --cov-report lcov --cov=core tests/
       - name: Upload coverage to Codecov
+        if: matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v3
