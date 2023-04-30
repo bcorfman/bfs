@@ -5,8 +5,9 @@ from core.search import GridSearchProblem, breadth_first_search
 
 st.title("Breadth-first search")
 st.write(
-    "This type of search is complete, but a bit brute-force. However, for small maps, breadth-first search "
-    + "provides quick enough performance.")
+    "This type of search always finds the shortest path to the goal, but it's a brute-force, uninformed search. "
+    + "Compared to an informed heuristic search like A-star, breadth-first search is a slower performer, but on "
+    + "small maps, it does just fine.")
 problem = GridSearchProblem()
 st.sidebar.title("Parameters")
 label_col1, label_col2 = st.sidebar.columns(2, gap="small")
