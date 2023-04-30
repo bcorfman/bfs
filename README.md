@@ -21,3 +21,8 @@ OR
 ## To run the tests
 
 * In the terminal window, type `poetry run pytest`.
+
+## Visit the deployed webpage
+
+It's on [Streamlit Cloud](https://bcorfman-bfs-main-ihgp7e.streamlit.app).
+
