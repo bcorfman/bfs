@@ -9,5 +9,5 @@
   "features": {
     "ghcr.io/devcontainers-contrib/features/poetry:1": {}
   },
-  "postCreateCommand": "bash npm install && bash ./.devcontainer/post-install.sh"
+  "postCreateCommand": "bash ./.devcontainer/post-install.sh"
 }
