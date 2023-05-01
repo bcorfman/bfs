@@ -77,4 +77,5 @@ fig = go.Figure(data=[land, path, start, goal],
                                             autorange='reversed',
                                             showticklabels=False)))
 st.plotly_chart(fig, use_container_width=True)
-st.write(f"Path: {soln}")
+st.subheader("Path", "path")
+st.write(f"{soln}")
