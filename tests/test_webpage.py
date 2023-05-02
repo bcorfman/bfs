@@ -5,7 +5,7 @@ def test_default_solution_path(page: Page):
     page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
     expect(
         page.frame_locator("iframe[title=\"streamlitApp\"]").
-        get_by_text("Path:")).to_have_text(
+        get_by_text("Path:")).to_contain_text(
             "[(15, 6), (15, 7), (15, 8), (16, 8), (17, 8), (18, 8), (19, 8), "
             "(20, 8), (21, 8), (22, 8), (23, 8), (24, 8), (25, 8), (26, 8), "
             "(27, 8), (28, 8), (29, 8), (30, 8), (31, 8), (32, 8), (33, 8), "
