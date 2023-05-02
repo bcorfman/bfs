@@ -21,4 +21,4 @@ def test_default_solution_path(page: Page):
     locator.get_by_role("textbox", name="Y:").first.fill("6")
     locator.get_by_role("textbox", name="Y:").first.press("Tab")
     expect(locator.get_by_text("TypeError")).to_have_text(
-        "This app has encountered an error.")"""
+        "This app has encountered an error.") """
