@@ -96,6 +96,7 @@ fig = go.Figure(data=[land, path, start, goal],
                                             autorange='reversed',
                                             showticklabels=False)))
 st.plotly_chart(fig, use_container_width=True)
+
 if soln is not None:
     st.write(f"Path: {soln}")
 else:
