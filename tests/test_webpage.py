@@ -17,25 +17,22 @@ def test_default_solution_path(page: Page):
 def test_start_node_outside_map_boundary(page: Page):
     page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
-    locator.get_by_role("textbox", name="X:").first.fill("30")
-    locator.get_by_role("textbox", name="X:").first.press("Tab")
-    locator.get_by_role("textbox", name="Y:").first.fill("5")
-    locator.get_by_role("textbox", name="Y:").first.press("Tab")
+    locator.get_by_role("spinbutton", name="X:").first.fill("30")
+    locator.get_by_role("spinbutton", name="X:").first.press("Tab")
+    locator.get_by_role("spinbutton", name="Y:").first.fill("5")
+    locator.get_by_role("spinbutton", name="Y:").first.press("Tab")
     element = locator.get_by_text("Path:")
     assert element is not None
     expect(element).to_contain_text("No solution found. Outside map boundary.")
-    # element = locator.get_by_text("TypeError:")
-    # assert element is not None
-    # expect(element).to_contain_text("This app has encountered an error.")
 
 
 def test_start_node_one_line_above_map_boundary(page: Page):
     page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
-    locator.get_by_role("textbox", name="X:").first.fill("26")
-    locator.get_by_role("textbox", name="X:").first.press("Tab")
-    locator.get_by_role("textbox", name="Y:").first.fill("6")
-    locator.get_by_role("textbox", name="Y:").first.press("Tab")
+    locator.get_by_role("spinbutton", name="X:").first.fill("26")
+    locator.get_by_role("spinbutton", name="X:").first.press("Tab")
+    locator.get_by_role("spinbutton", name="Y:").first.fill("6")
+    locator.get_by_role("spinbutton", name="Y:").first.press("Tab")
     element = locator.get_by_text("Path:")
     assert element is not None
     expect(element).to_contain_text("No solution found. Outside map boundary.")
