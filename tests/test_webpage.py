@@ -13,12 +13,12 @@ def test_default_solution_path(page: Page):
             "(39, 6), (40, 6), (41, 6), (42, 6), (42, 7), (43, 7), (44, 7)]")
 
 
-"""def test_start_node_one_line_above_map(page: Page):
+def test_start_node_one_line_above_map(page: Page):
     page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
     locator.get_by_role("textbox", name="X:").first.fill("25")
     locator.get_by_role("textbox", name="X:").first.press("Tab")
     locator.get_by_role("textbox", name="Y:").first.fill("6")
     locator.get_by_role("textbox", name="Y:").first.press("Tab")
-    expect(locator.get_by_text("TypeError")).to_have_text(
-        "This app has encountered an error.")"""
+    expect(locator.get_by_text("TypeError")).to_contain_text(
+        "This app has encountered an error.")
