@@ -61,6 +61,18 @@ class GridSearchProblem:
     def isGoal(self, state):
         return state == self.goal
 
+    def onGrid(self, state):
+        with open('zoof.txt', 'w') as zoof:
+            result = False
+            x, y = state
+            zoof.write(f"{y} {x}")
+            try:
+                if self.grid[y][x] != OFF_GRID:
+                    result = True
+            except IndexError:
+                result = False
+            return result
+
     def getSuccessors(self, state):
         x, y = state
         successors = []
@@ -82,18 +94,20 @@ class GridSearchProblem:
 
 
 def breadth_first_search(problem):
-    path = ()
-    frontier = deque([(problem.getStartState(), path)])
-    explored = set()
-    while frontier:
-        node = frontier.popleft()
-        state, path = node
-        if problem.isGoal(state):
-            return list(path)
-        for new_state in problem.getSuccessors(state):
-            new_path = tuple(list(path) + [new_state])
-            new_node = new_state, new_path
-            if new_state not in explored:
-                explored.add(new_state)
-                frontier.append(new_node)
+    initialState = problem.getStartState()
+    if problem.onGrid(initialState):
+        path = ()
+        frontier = deque([(initialState, path)])
+        explored = set()
+        while frontier:
+            node = frontier.popleft()
+            state, path = node
+            if problem.isGoal(state):
+                return list(path)
+            for new_state in problem.getSuccessors(state):
+                new_path = tuple(list(path) + [new_state])
+                new_node = new_state, new_path
+                if new_state not in explored:
+                    explored.add(new_state)
+                    frontier.append(new_node)
     return None
