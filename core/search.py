@@ -62,16 +62,14 @@ class GridSearchProblem:
         return state == self.goal
 
     def onGrid(self, state):
-        with open('zoof.txt', 'w') as zoof:
+        result = False
+        x, y = state
+        try:
+            if self.grid[y][x] != OFF_GRID:
+                result = True
+        except IndexError:
             result = False
-            x, y = state
-            zoof.write(f"{y} {x}")
-            try:
-                if self.grid[y][x] != OFF_GRID:
-                    result = True
-            except IndexError:
-                result = False
-            return result
+        return result
 
     def getSuccessors(self, state):
         x, y = state
