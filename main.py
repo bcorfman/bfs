@@ -13,30 +13,32 @@ st.write(
     + "small maps, it does just fine.")
 problem = GridSearchProblem()
 st.sidebar.title("Parameters")
-label_col1, label_col2 = st.sidebar.columns(2, gap="small")
-label_col1.caption("Start")
-label_col2.caption("Goal")
-col1, col2, col3, col4 = st.sidebar.columns(4, gap="small")
-txt_start_x = col1.number_input("X:",
+label_col11, label_col12 = st.sidebar.columns(2, gap="small")
+label_col11.caption("Start")
+col11, col12 = st.sidebar.columns(2, gap="small")
+txt_start_x = col11.number_input("X:",
+                                 format="%d",
+                                 min_value=1,
+                                 max_value=MAX_GRID_WIDTH,
+                                 value=problem.start[0])
+txt_start_y = col12.number_input("Y:",
+                                 format="%d",
+                                 min_value=1,
+                                 max_value=MAX_GRID_WIDTH,
+                                 value=problem.start[1])
+label_col21, label_col22 = st.sidebar.columns(2, gap="small")
+label_col21.caption("Goal")
+col21, col22 = st.sidebar.columns(2, gap="small")
+txt_goal_x = col21.number_input("X:",
                                 format="%d",
                                 min_value=1,
                                 max_value=MAX_GRID_WIDTH,
-                                value=problem.start[0])
-txt_start_y = col2.number_input("Y:",
+                                value=problem.goal[0])
+txt_goal_y = col22.number_input("Y:",
                                 format="%d",
                                 min_value=1,
                                 max_value=MAX_GRID_WIDTH,
-                                value=problem.start[1])
-txt_goal_x = col3.number_input("X:",
-                               format="%d",
-                               min_value=1,
-                               max_value=MAX_GRID_WIDTH,
-                               value=problem.goal[0])
-txt_goal_y = col4.number_input("Y:",
-                               format="%d",
-                               min_value=1,
-                               max_value=MAX_GRID_WIDTH,
-                               value=problem.goal[1])
+                                value=problem.goal[1])
 
 new_start = int(txt_start_x), int(txt_start_y)
 new_goal = int(txt_goal_x), int(txt_goal_y)
