@@ -7,6 +7,12 @@ def test_bfs_goal_out_of_bounds():
     assert path is None
 
 
+def test_bfs_start_is_one_row_outside_of_grid():
+    problem = GridSearchProblem(start=(26, 6), goal=(44, 7))
+    path = breadth_first_search(problem)
+    assert path is None
+
+
 def test_bfs_start_and_goal_are_the_same():
     problem = GridSearchProblem(start=(15, 7), goal=(15, 7))
     path = breadth_first_search(problem)

@@ -13,18 +13,22 @@ class GridSearchProblem:
         self.grid = add_border(load_grid(filename=grid_file))
         if kwargs.get('start'):
             x, y = self._findStart()
-            self._changeGridAtCoord(x, y, '*')
+            if x is not None and y is not None:
+                self._changeGridAtCoord(x, y, '*')
             self.start = kwargs['start']
             x, y = self.start
-            self._changeGridAtCoord(x, y, 'S')
+            if self.grid[y][x] != OFF_GRID:
+                self._changeGridAtCoord(x, y, 'S')
         else:
             self.start = self._findStart()
         if kwargs.get('goal'):
             x, y = self._findGoal()
-            self._changeGridAtCoord(x, y, '*')
+            if x is not None and y is not None:
+                self._changeGridAtCoord(x, y, '*')
             self.goal = kwargs['goal']
             x, y = self.goal
-            self._changeGridAtCoord(x, y, 'G')
+            if self.grid[y][x] != OFF_GRID:
+                self._changeGridAtCoord(x, y, 'G')
         else:
             self.goal = self._findGoal()
         start_x, _ = self.start
