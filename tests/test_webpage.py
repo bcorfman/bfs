@@ -1,8 +1,15 @@
+import os
+
 from playwright.sync_api import Page, expect
 
 
 def test_default_solution_path(page: Page):
-    page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
+    url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
+    if url:
+        assert url is None
+        page.goto(url)
+    else:
+        page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
     element = locator.get_by_text("Path:")
     assert element is not None
@@ -15,7 +22,14 @@ def test_default_solution_path(page: Page):
 
 
 def test_start_node_outside_map_boundary(page: Page):
-    page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
+    url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
+    if url:
+        page.goto(url)
+    else:
+        page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
+
+
+#    page.goto("https://localhost:8501")
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
     locator.get_by_role("spinbutton", name="X:").first.fill("30")
     locator.get_by_role("spinbutton", name="X:").first.press("Tab")
@@ -27,7 +41,11 @@ def test_start_node_outside_map_boundary(page: Page):
 
 
 def test_start_node_one_line_above_map_boundary(page: Page):
-    page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
+    url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
+    if url:
+        page.goto(url)
+    else:
+        page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
     locator.get_by_role("spinbutton", name="X:").first.fill("26")
     locator.get_by_role("spinbutton", name="X:").first.press("Tab")
