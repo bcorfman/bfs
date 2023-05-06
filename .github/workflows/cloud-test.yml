@@ -15,6 +15,7 @@ jobs:
           poetry install
       - name: Install browsers for system testing with Playwright
         run: |
+          poetry run playwright install-deps
           poetry run playwright install
       - name: Test with pytest
         run: |

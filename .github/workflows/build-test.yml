@@ -33,6 +33,7 @@ jobs:
       - name: Install browsers for system testing with Playwright
         if: matrix.os == 'ubuntu-latest'
         run: |
+          poetry run playwright install-deps
           poetry run playwright install
       - name: Test with pytest
         if: matrix.os == 'ubuntu-latest'
