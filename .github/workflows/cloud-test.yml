@@ -1,0 +1,21 @@
+# Streamlit Cloud will run against  
+name: Test Streamlit Cloud deployment
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: bcorfman/streamlit-docker
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install
+      - name: Install browsers for system testing with Playwright
+        run: |
+          poetry run playwright install
+      - name: Test with pytest
+        run: |
+          poetry run pytest -m system

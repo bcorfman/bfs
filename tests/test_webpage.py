@@ -1,8 +1,10 @@
 import os
 
+import pytest
 from playwright.sync_api import Page, expect
 
 
+@pytest.mark.system
 def test_default_solution_path(page: Page):
     url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
     if url:
@@ -21,6 +23,7 @@ def test_default_solution_path(page: Page):
         "(39, 6), (40, 6), (41, 6), (42, 6), (42, 7), (43, 7), (44, 7)]")
 
 
+@pytest.mark.system
 def test_start_node_outside_map_boundary(page: Page):
     url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
     if url:
@@ -28,8 +31,6 @@ def test_start_node_outside_map_boundary(page: Page):
     else:
         page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
 
-
-#    page.goto("https://localhost:8501")
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
     locator.get_by_role("spinbutton", name="X:").first.fill("30")
     locator.get_by_role("spinbutton", name="X:").first.press("Tab")
@@ -40,6 +41,7 @@ def test_start_node_outside_map_boundary(page: Page):
     expect(element).to_contain_text("No solution found. Outside map boundary.")
 
 
+@pytest.mark.system
 def test_start_node_one_line_above_map_boundary(page: Page):
     url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
     if url:

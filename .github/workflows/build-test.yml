@@ -37,7 +37,7 @@ jobs:
       - name: Test with pytest
         if: matrix.os == 'ubuntu-latest'
         run: |
-          poetry run pytest
+          poetry run pytest -m unit
           poetry run pytest --cov-branch --cov-report lcov --cov=core tests/
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest'
