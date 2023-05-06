@@ -8,7 +8,6 @@ from playwright.sync_api import Page, expect
 def test_default_solution_path(page: Page):
     url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
     if url:
-        assert url is None
         page.goto(url)
     else:
         page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
