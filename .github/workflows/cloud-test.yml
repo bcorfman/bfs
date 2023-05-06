@@ -1,6 +1,10 @@
-# Streamlit Cloud will run against  
 name: Test Streamlit Cloud deployment
-on: [push]
+on: 
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight
+
+env:
+  STREAMLIT_DEPLOYMENT_URL: "https://bcorfman-bfs-main-ihgp7e.streamlit.app"
 
 jobs:
   test:
