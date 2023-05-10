@@ -3,7 +3,7 @@ name: Python build and test
 on: [push]
 
 env:
-  STREAMLIT_DEPLOYMENT_URL: "https://localhost:8501"
+  STREAMLIT_DEPLOYMENT_URL: "http://localhost:8501"
 
 jobs:
   test-mac-and-windows:
@@ -42,7 +42,7 @@ jobs:
         credentials:
           username: ${{ secrets.DOCKER_USERNAME}}
           password: ${{ secrets.DOCKER_PASSWORD }}
-        ports: [443, 8501]
+        ports: [8501]
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
