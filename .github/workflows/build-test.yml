@@ -42,7 +42,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
         ports:
-          - 8501
+          - 8501:8501
 
     runs-on: ubuntu-latest
     steps:
