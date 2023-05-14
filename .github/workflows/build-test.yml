@@ -35,6 +35,9 @@ jobs:
           poetry run pytest -m unit
 
   test-linux:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright/python:v1.32.0-jammy
+
     services:
       streamlit:
         image: bcorfman/streamlit-docker
@@ -44,7 +47,6 @@ jobs:
         ports:
           - 8501:8501
 
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
@@ -62,10 +64,6 @@ jobs:
           poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      - name: Install browsers for system testing with Playwright
-        run: |
-          poetry run playwright install-deps
-          poetry run playwright install
       - name: Test with pytest
         run: |
           poetry run pytest
