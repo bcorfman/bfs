@@ -36,7 +36,7 @@ jobs:
 
   test-linux:
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/playwright/python:v1.32.0-jammy
+    container: mcr.microsoft.com/playwright/python:v1.33.0-jammy
 
     services:
       streamlit:
