@@ -35,7 +35,7 @@ async def test_start_node_outside_map_boundary(page: Page):
     await locator.get_by_role("spinbutton", name="X:").first.press("Tab")
     await locator.get_by_role("spinbutton", name="Y:").first.fill("5")
     await locator.get_by_role("spinbutton", name="Y:").first.press("Tab")
-    element = locator.get_by_text("Path:")
+    element = await locator.get_by_text("Path:")
     assert element is not None
     await expect(element).to_contain_text(
         "No solution found. Outside map boundary.")
@@ -53,7 +53,7 @@ async def test_start_node_one_line_above_map_boundary(page: Page):
     await locator.get_by_role("spinbutton", name="X:").first.press("Tab")
     await locator.get_by_role("spinbutton", name="Y:").first.fill("6")
     await locator.get_by_role("spinbutton", name="Y:").first.press("Tab")
-    element = locator.get_by_text("Path:")
+    element = await locator.get_by_text("Path:")
     assert element is not None
     await expect(element).to_contain_text(
         "No solution found. Outside map boundary.")
