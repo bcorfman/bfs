@@ -5,6 +5,7 @@ from playwright.async_api import Page, expect
 
 
 @pytest.mark.system
+@pytest.mark.asyncio_cooperative
 async def test_default_solution_path(page: Page):
     url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
     if url:
@@ -23,6 +24,7 @@ async def test_default_solution_path(page: Page):
 
 
 @pytest.mark.system
+@pytest.mark.asyncio_cooperative
 async def test_start_node_outside_map_boundary(page: Page):
     url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
     if url:
@@ -42,6 +44,7 @@ async def test_start_node_outside_map_boundary(page: Page):
 
 
 @pytest.mark.system
+@pytest.mark.asyncio_cooperative
 async def test_start_node_one_line_above_map_boundary(page: Page):
     url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
     if url:
