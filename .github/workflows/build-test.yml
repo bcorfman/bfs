@@ -3,7 +3,7 @@ name: Python build and test
 on: [push]
 
 env:
-  STREAMLIT_DEPLOYMENT_URL: "http://localhost:8501"
+  STREAMLIT_DEPLOYMENT_URL: "http://streamlit:8501"
 
 jobs:
   test-mac-and-windows:
