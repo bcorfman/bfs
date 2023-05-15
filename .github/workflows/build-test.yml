@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: setup-docker
-        uses: docker-practice/actions-setup-docker@1.0.11
+        uses: crazy-max/ghaction-setup-docker@v1.1.0
       - name: Docker compose up
         run: docker compose up
       - name: Set up Python
