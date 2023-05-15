@@ -12,7 +12,7 @@ def test_default_solution_path(page: Page):
     else:
         page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
     filepath = os.environ.get('WORKDIR') or ""
-    with open(filepath + os.sep + "log.txt") as fp:
+    with open(filepath + os.sep + "log.txt", 'w') as fp:
         fp.write(page.content)
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
     element = locator.get_by_text("Path:")
