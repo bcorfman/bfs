@@ -53,6 +53,8 @@ jobs:
           python-version: 3.11
       - name: Docker ps
         run: docker ps
+      - name: ping
+        run: ping host.docker.internal:8501
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
