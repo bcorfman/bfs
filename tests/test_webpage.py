@@ -11,6 +11,9 @@ def test_default_solution_path(page: Page):
         page.goto(url)
     else:
         page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
+    filepath = os.environ.get('WORKDIR') or ""
+    with open(filepath + os.sep + "log.txt") as fp:
+        fp.write(page.content)
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
     element = locator.get_by_text("Path:")
     assert element is not None
