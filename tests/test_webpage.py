@@ -8,7 +8,7 @@ from playwright.sync_api import Page, expect
 def test_default_solution_path(page: Page):
     url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
     if url:
-        page.goto(url)
+        page.goto("http://streamlit:8501/")
     else:
         page.goto("https://bcorfman-bfs-main-ihgp7e.streamlit.app/")
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
