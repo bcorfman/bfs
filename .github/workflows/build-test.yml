@@ -48,7 +48,8 @@ jobs:
         env:
           STREAMLIT_SERVER_PORT: 8501
           STREAMLIT_SERVER_ADDRESS: streamlit
-          STREAMLIT_SERVER_HEADLESS: true
+          STREAMLIT_SERVER_ENABLECORS: false
+          STREAMLIT_SERVER_ENABLEXSRFPROTECTION: false
 
     steps:
       - uses: actions/checkout@v3
@@ -73,7 +74,7 @@ jobs:
       - run: cat curl_result_docker
       - name: Test with pytest
         run: |
-          poetry run pytest -vv --browser webkit
+          poetry run pytest -vv
           poetry run pytest --cov-branch --cov-report lcov --cov=core tests/
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
