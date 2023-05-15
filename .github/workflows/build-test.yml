@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - run: apt-get update; apt-get install curl -y
-      - run: curl juice_shop_app:3000 > curl_result_docker
+      - run: curl streamlit:8501 > curl_result_docker
       - run: cat curl_result_docker
       - uses: actions/checkout@v3
       - name: Set up Python
