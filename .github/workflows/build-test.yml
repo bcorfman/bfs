@@ -73,7 +73,7 @@ jobs:
       - run: cat curl_result_docker
       - name: Test with pytest
         run: |
-          poetry run pytest -vv --browser firefox
+          poetry run pytest -vv --browser webkit
           poetry run pytest --cov-branch --cov-report lcov --cov=core tests/
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
