@@ -36,7 +36,7 @@ jobs:
 
   test-linux:
     runs-on: ubuntu-latest
-    container: ubuntu
+    container: mcr.microsoft.com/playwright/python:v1.33.0-jammy
     services:
       streamlit:
         image: bcorfman/streamlit-docker
@@ -47,6 +47,9 @@ jobs:
           - 8501:8501
 
     steps:
+      - run: apt-get update; apt-get install curl -y
+      - run: curl juice_shop_app:3000 > curl_result_docker
+      - run: cat curl_result_docker
       - uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -63,10 +66,6 @@ jobs:
           poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      - name: Install browsers for system testing with Playwright
-        run: |
-          poetry run playwright install-deps
-          poetry run playwright install
       - name: Test with pytest
         run: |
           poetry run pytest
