@@ -40,8 +40,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up service containers
-        run: docker compose up
+      - uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: "./docker-compose.yml"
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -63,5 +64,3 @@ jobs:
           poetry run pytest --cov-branch --cov-report lcov --cov=core tests/
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
-      - name: Bring down service containers
-        run: docker compose down
