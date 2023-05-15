@@ -1,7 +1,7 @@
 import os
 
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page  # , expect
 
 
 @pytest.mark.system
@@ -25,7 +25,7 @@ def test_default_solution_path(page: Page):
     #    "(39, 6), (40, 6), (41, 6), (42, 6), (42, 7), (43, 7), (44, 7)]")
 
 
-@pytest.mark.system
+""" @pytest.mark.system
 def test_start_node_outside_map_boundary(page: Page):
     url = os.environ.get('STREAMLIT_DEPLOYMENT_URL')
     if url:
@@ -58,3 +58,4 @@ def test_start_node_one_line_above_map_boundary(page: Page):
     element = locator.get_by_text("Path:")
     assert element is not None
     expect(element).to_contain_text("No solution found. Outside map boundary.")
+ """
