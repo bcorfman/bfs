@@ -45,7 +45,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
         ports:
           - 8501:8501
-        options: --entrypoint "streamlit run main.py --server.port=8501 --server.address=streamlit"
+        env:
+          STREAMLIT_SERVER_PORT: 8501
+          STREAMLIT_SERVER_ADDRESS: streamlit
 
     steps:
       - run: apt-get update; apt-get install curl -y
