@@ -74,6 +74,7 @@ jobs:
         run: |
           poetry run pytest -vv
           poetry run pytest --cov-branch --cov-report lcov --cov=core tests/
-          cat ${{ github.workspace}}/log.txt
+      - name: display log
+        run: cat ${{ github.workspace}}/log.txt
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
