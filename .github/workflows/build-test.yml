@@ -53,6 +53,7 @@ jobs:
       - name: Wait for Streamlit Cloud deployment before testing
         uses: iFaxity/wait-on-action@v1.1.0
         with:
+          resource: "https://bcorfman-bfs-main-ihgp7e.streamlit.app"
           timeout: 600000
           delay: 100000
           interval: 5000
