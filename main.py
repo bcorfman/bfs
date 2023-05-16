@@ -7,9 +7,9 @@ from core.search import GridSearchProblem, breadth_first_search
 st.set_page_config(page_title='Breadth-first search app')
 st.title("Grid map search")
 st.write(
-    "Breadth-first search (BFS) is always complete and finds the shortest path to the goal, but it's also uninformed "
+    "Breadth-first search (BFS) is always complete and finds the shortest path to the goal, but it's also uninformed. "
     +
-    "and brute-force. Compared to an informed heuristic search like A*, BFS is a slower performer, but on "
+    "Compared to an informed heuristic search like A*, BFS can be a slower performer, but on "
     + "small maps it does just fine.")
 problem = GridSearchProblem()
 st.sidebar.title("Parameters")
