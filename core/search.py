@@ -18,25 +18,21 @@ class GridSearchProblem:
         self.path_char = '<' if goal_x < start_x else '>'
 
     def _parseItem(self, proposed_item, calc_item, item_char):
-        if proposed_item:
-            # ensure new start loc is readable before committing
-            try:
-                px, py = proposed_item
-                px, py = int(px), int(py)
-                # test grid access before changing indexes
-                _ = self.grid[py][px]
-                self._changeGridAtCoord(px, py, '*')
-                if self.grid[py][px] != OFF_GRID:
-                    self._changeGridAtCoord(px, py, item_char)
-                final_item = px, py
-            except (TypeError, ValueError, IndexError):
-                sx, sy = calc_item()
-                self._changeGridAtCoord(sx, sy, '*')
-                if self.grid[sy][sx] != OFF_GRID:
-                    self._changeGridAtCoord(sx, sy, item_char)
-                final_item = sx, sy
-        else:
-            raise ValueError("_parseItem was provided no value")
+        try:
+            px, py = proposed_item
+            px, py = int(px), int(py)
+            # test grid access before changing indexes
+            _ = self.grid[py][px]
+            self._changeGridAtCoord(px, py, '*')
+            if self.grid[py][px] != OFF_GRID:
+                self._changeGridAtCoord(px, py, item_char)
+            final_item = px, py
+        except (TypeError, ValueError, IndexError):
+            sx, sy = calc_item()
+            self._changeGridAtCoord(sx, sy, '*')
+            if self.grid[sy][sx] != OFF_GRID:
+                self._changeGridAtCoord(sx, sy, item_char)
+            final_item = sx, sy
         return final_item
 
     def _findStart(self):

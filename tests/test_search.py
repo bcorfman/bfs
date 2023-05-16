@@ -4,6 +4,22 @@ from core.search import GridSearchProblem, breadth_first_search
 
 
 @pytest.mark.unit
+def test_parse_item_without_proposed_start_location():
+    problem = GridSearchProblem(start=(13, 3), goal=(44, 7))
+    start = problem._parseItem(None, problem._findStart, 'S')
+    assert start == (13, 3)
+    assert problem.grid[3][13] == 'S'
+
+
+@pytest.mark.unit
+def test_parse_item_with_proposed_start_location():
+    problem = GridSearchProblem(start=(13, 3), goal=(44, 7))
+    start = problem._parseItem((16, 5), problem._findStart, 'S')
+    assert start == (16, 5)
+    assert problem.grid[5][16] == 'S'
+
+
+@pytest.mark.unit
 def test_bfs_start_out_of_bounds():
     problem = GridSearchProblem(start=(13, 3), goal=(44, 7))
     path = breadth_first_search(problem)
