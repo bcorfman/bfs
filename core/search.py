@@ -97,7 +97,7 @@ class GridSearchProblem:
 
 def breadth_first_search(problem):
     initialState = problem.getStartState()
-    if problem.onGrid(initialState):
+    if problem.onGrid(initialState) and problem.onGrid(problem.goal):
         path = ()
         frontier = deque([(initialState, path)])
         explored = set()

@@ -4,8 +4,8 @@ from core.search import GridSearchProblem, breadth_first_search
 
 
 @pytest.mark.unit
-def test_bfs_goal_out_of_bounds():
-    problem = GridSearchProblem(start=(15, 7), goal=(50, 7))
+def test_bfs_start_out_of_bounds():
+    problem = GridSearchProblem(start=(13, 3), goal=(44, 7))
     path = breadth_first_search(problem)
     assert path is None
 
@@ -13,6 +13,20 @@ def test_bfs_goal_out_of_bounds():
 @pytest.mark.unit
 def test_bfs_start_is_one_row_outside_of_grid():
     problem = GridSearchProblem(start=(26, 6), goal=(44, 7))
+    path = breadth_first_search(problem)
+    assert path is None
+
+
+@pytest.mark.unit
+def test_bfs_goal_out_of_bounds():
+    problem = GridSearchProblem(start=(15, 7), goal=(50, 7))
+    path = breadth_first_search(problem)
+    assert path is None
+
+
+@pytest.mark.unit
+def test_bfs_goal_is_one_row_and_col_outside_of_grid():
+    problem = GridSearchProblem(start=(15, 5), goal=(44, 6))
     path = breadth_first_search(problem)
     assert path is None
 
