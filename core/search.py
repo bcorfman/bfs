@@ -27,12 +27,14 @@ class GridSearchProblem:
             if self.grid[py][px] != OFF_GRID:
                 self._changeGridAtCoord(px, py, item_char)
             final_item = px, py
-        except (TypeError, ValueError, IndexError):
+        except (TypeError, ValueError):
             sx, sy = calc_item()
             self._changeGridAtCoord(sx, sy, '*')
             if self.grid[sy][sx] != OFF_GRID:
                 self._changeGridAtCoord(sx, sy, item_char)
             final_item = sx, sy
+        except IndexError:
+            final_item = None, None
         return final_item
 
     def _findStart(self):
@@ -67,11 +69,11 @@ class GridSearchProblem:
 
     def onGrid(self, state):
         result = False
-        x, y = state
         try:
+            x, y = state
             if self.grid[y][x] != OFF_GRID:
                 result = True
-        except IndexError:
+        except (IndexError, TypeError):
             result = False
         return result
 
