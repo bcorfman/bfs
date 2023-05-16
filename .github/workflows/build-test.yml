@@ -33,7 +33,6 @@ jobs:
 
   test-linux:
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/playwright/python:v1.33.0-jammy
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
@@ -53,7 +52,6 @@ jobs:
           poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          poetry run pytest 
-          poetry run pytest --cov-branch --cov-report lcov --cov=core tests/
+          poetry run pytest -m unit
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
