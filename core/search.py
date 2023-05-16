@@ -32,7 +32,7 @@ class GridSearchProblem:
             if self.grid[y][x] != OFF_GRID:
                 self._changeGridAtCoord(x, y, item_char)
         else:
-            self.start = self._findStart()
+            self.start = calc_item()
         return final_item
 
     def _findStart(self):
