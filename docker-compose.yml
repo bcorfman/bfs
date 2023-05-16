@@ -1,0 +1,13 @@
+version: "3"
+services:
+  streamlit:
+    build:
+      context: ./docker/streamlit
+    ports:
+      - "8501:8501"
+    networks:
+      - BFSApp
+
+networks:
+  BFSApp:
+    driver: bridge
