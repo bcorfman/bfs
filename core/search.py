@@ -18,21 +18,25 @@ class GridSearchProblem:
         self.path_char = '<' if goal_x < start_x else '>'
 
     def _parseItem(self, proposed_item, calc_item, item_char):
-        final_item = None
         if proposed_item:
             # ensure new start loc is readable before committing
-            x, y = None, None
             try:
-                x, y = proposed_item
-            except TypeError:
-                x, y = self._findStart()
-                # fail here on error if we can't find a valid start
-                if x is not None and y is not None:
-                    self._changeGridAtCoord(x, y, '*')
-            if self.grid[y][x] != OFF_GRID:
-                self._changeGridAtCoord(x, y, item_char)
+                px, py = proposed_item
+                px, py = int(px), int(py)
+                # test grid access before changing indexes
+                _ = self.grid[py][px]
+                self._changeGridAtCoord(px, py, '*')
+                if self.grid[py][px] != OFF_GRID:
+                    self._changeGridAtCoord(px, py, item_char)
+                final_item = px, py
+            except (TypeError, ValueError, IndexError):
+                sx, sy = calc_item()
+                self._changeGridAtCoord(sx, sy, '*')
+                if self.grid[sy][sx] != OFF_GRID:
+                    self._changeGridAtCoord(sx, sy, item_char)
+                final_item = sx, sy
         else:
-            self.start = calc_item()
+            raise ValueError("_parseItem was provided no value")
         return final_item
 
     def _findStart(self):
