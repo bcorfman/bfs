@@ -11,33 +11,38 @@ class GridSearchProblem:
     def __init__(self, **kwargs):
         grid_file = kwargs.get('filename') or os.path.join('data', 'grid.txt')
         self.grid = add_border(load_grid(filename=grid_file))
-        if kwargs.get('start'):
+        self.start = self.parseStart(kwargs.get('start'))
+        self.goal = self.parseGoal(kwargs.get('goal'))
+        start_x, _ = self.start
+        goal_x, _ = self.goal
+        self.path_char = '<' if goal_x < start_x else '>'
+
+    def _parseStart(self, proposed_start):
+        if proposed_start:
             # ensure new start loc is readable before committing
             try:
-                test_x, test_y = kwargs['start']
-
+                x, y = proposed_start
             except TypeError:
-                test_x, test_y = self._findStart()
+                x, y = self._findStart()
                 # fail here on error if we can't find a valid start
-                if test_x is not None and test_y is not None:
-                    self._changeGridAtCoord(test_x, test_y, '*')
+                if x is not None and y is not None:
+                    self._changeGridAtCoord(x, y, '*')
             if self.grid[y][x] != OFF_GRID:
                 self._changeGridAtCoord(x, y, 'S')
         else:
             self.start = self._findStart()
-        if kwargs.get('goal'):
+
+    def _parseGoal(self, proposed_goal):
+        if proposed_goal:
             x, y = self._findGoal()
             if x is not None and y is not None:
                 self._changeGridAtCoord(x, y, '*')
-            self.goal = kwargs['goal']
+            self.goal = proposed_goal
             x, y = self.goal
             if self.grid[y][x] != OFF_GRID:
                 self._changeGridAtCoord(x, y, 'G')
         else:
             self.goal = self._findGoal()
-        start_x, _ = self.start
-        goal_x, _ = self.goal
-        self.path_char = '<' if goal_x < start_x else '>'
 
     def _findStart(self):
         return self._findElem('S')
