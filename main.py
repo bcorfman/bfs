@@ -5,12 +5,12 @@ from core.parser import MAX_GRID_WIDTH
 from core.search import GridSearchProblem, breadth_first_search
 
 st.set_page_config(page_title='Breadth-first search app')
-st.title("Breadth-first search")
+st.title("Grid map search")
 st.write(
-    "This type of search always finds the shortest path to the goal, but it's a brute-force, uninformed search. "
+    "Breadth-first search (BFS) is always complete and finds the shortest path to the goal, but it's also uninformed. "
     +
-    "Compared to an informed heuristic search like A-star, breadth-first search is a slower performer, but on "
-    + "small maps, it does just fine.")
+    "Compared to an informed heuristic search like A*, BFS can be a slower performer, but on "
+    + "small maps it does just fine.")
 problem = GridSearchProblem()
 st.sidebar.title("Parameters")
 label_col11, label_col12 = st.sidebar.columns(2, gap="small")

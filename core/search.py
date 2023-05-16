@@ -11,29 +11,31 @@ class GridSearchProblem:
     def __init__(self, **kwargs):
         grid_file = kwargs.get('filename') or os.path.join('data', 'grid.txt')
         self.grid = add_border(load_grid(filename=grid_file))
-        if kwargs.get('start'):
-            x, y = self._findStart()
-            if x is not None and y is not None:
-                self._changeGridAtCoord(x, y, '*')
-            self.start = kwargs['start']
-            x, y = self.start
-            if self.grid[y][x] != OFF_GRID:
-                self._changeGridAtCoord(x, y, 'S')
-        else:
-            self.start = self._findStart()
-        if kwargs.get('goal'):
-            x, y = self._findGoal()
-            if x is not None and y is not None:
-                self._changeGridAtCoord(x, y, '*')
-            self.goal = kwargs['goal']
-            x, y = self.goal
-            if self.grid[y][x] != OFF_GRID:
-                self._changeGridAtCoord(x, y, 'G')
-        else:
-            self.goal = self._findGoal()
+        self.start = self._parseItem(kwargs.get('start'), self._findStart, 'S')
+        self.goal = self._parseItem(kwargs.get('goal'), self._findGoal, 'G')
         start_x, _ = self.start
         goal_x, _ = self.goal
         self.path_char = '<' if goal_x < start_x else '>'
+
+    def _parseItem(self, proposed_item, calc_item, item_char):
+        try:
+            px, py = proposed_item
+            px, py = int(px), int(py)
+            # test grid access before changing indexes
+            _ = self.grid[py][px]
+            if self.grid[py][px] != OFF_GRID:
+                ox, oy = calc_item()
+                self._changeGridAtCoord(ox, oy, '*')
+                self._changeGridAtCoord(px, py, item_char)
+            final_item = px, py
+        except (TypeError, ValueError):
+            ox, oy = calc_item()
+            if self.grid[oy][ox] != OFF_GRID:
+                self._changeGridAtCoord(ox, oy, item_char)
+            final_item = ox, oy
+        except IndexError:
+            final_item = None, None
+        return final_item
 
     def _findStart(self):
         return self._findElem('S')
@@ -67,11 +69,11 @@ class GridSearchProblem:
 
     def onGrid(self, state):
         result = False
-        x, y = state
         try:
+            x, y = state
             if self.grid[y][x] != OFF_GRID:
                 result = True
-        except IndexError:
+        except (IndexError, TypeError):
             result = False
         return result
 
