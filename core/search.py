@@ -23,16 +23,16 @@ class GridSearchProblem:
             px, py = int(px), int(py)
             # test grid access before changing indexes
             _ = self.grid[py][px]
-            self._changeGridAtCoord(px, py, '*')
             if self.grid[py][px] != OFF_GRID:
+                ox, oy = calc_item()
+                self._changeGridAtCoord(ox, oy, '*')
                 self._changeGridAtCoord(px, py, item_char)
             final_item = px, py
         except (TypeError, ValueError):
-            sx, sy = calc_item()
-            self._changeGridAtCoord(sx, sy, '*')
-            if self.grid[sy][sx] != OFF_GRID:
-                self._changeGridAtCoord(sx, sy, item_char)
-            final_item = sx, sy
+            ox, oy = calc_item()
+            if self.grid[oy][ox] != OFF_GRID:
+                self._changeGridAtCoord(ox, oy, item_char)
+            final_item = ox, oy
         except IndexError:
             final_item = None, None
         return final_item

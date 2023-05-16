@@ -4,16 +4,23 @@ from core.search import GridSearchProblem, breadth_first_search
 
 
 @pytest.mark.unit
+def test_on_grid_with_bad_location():
+    problem = GridSearchProblem()
+    start = problem.onGrid((None, None))
+    assert start is False
+
+
+@pytest.mark.unit
 def test_parse_item_without_proposed_start_location():
-    problem = GridSearchProblem(start=(13, 3), goal=(44, 7))
+    problem = GridSearchProblem()
     start = problem._parseItem(None, problem._findStart, 'S')
-    assert start == (13, 3)
-    assert problem.grid[3][13] == 'S'
+    assert start == (15, 5)
+    assert problem.grid[5][15] == 'S'
 
 
 @pytest.mark.unit
 def test_parse_item_with_proposed_start_location():
-    problem = GridSearchProblem(start=(13, 3), goal=(44, 7))
+    problem = GridSearchProblem()
     start = problem._parseItem((16, 5), problem._findStart, 'S')
     assert start == (16, 5)
     assert problem.grid[5][16] == 'S'
