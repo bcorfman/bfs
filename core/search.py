@@ -12,11 +12,15 @@ class GridSearchProblem:
         grid_file = kwargs.get('filename') or os.path.join('data', 'grid.txt')
         self.grid = add_border(load_grid(filename=grid_file))
         if kwargs.get('start'):
-            x, y = self._findStart()
-            if x is not None and y is not None:
-                self._changeGridAtCoord(x, y, '*')
-            self.start = kwargs['start']
-            x, y = self.start
+            # ensure new start loc is readable before committing
+            try:
+                test_x, test_y = kwargs['start']
+
+            except TypeError:
+                test_x, test_y = self._findStart()
+                # fail here on error if we can't find a valid start
+                if test_x is not None and test_y is not None:
+                    self._changeGridAtCoord(test_x, test_y, '*')
             if self.grid[y][x] != OFF_GRID:
                 self._changeGridAtCoord(x, y, 'S')
         else:
