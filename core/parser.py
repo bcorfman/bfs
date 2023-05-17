@@ -1,4 +1,5 @@
 MAX_GRID_WIDTH = 55
+MAX_GRID_HEIGHT = 20
 
 
 def load_grid(**kwargs):

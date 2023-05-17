@@ -1,7 +1,7 @@
 import plotly.graph_objs as go
 import streamlit as st
 
-from core.parser import MAX_GRID_WIDTH
+from core.parser import MAX_GRID_HEIGHT, MAX_GRID_WIDTH
 from core.search import GridSearchProblem, breadth_first_search
 
 st.set_page_config(page_title='Breadth-first search app')
@@ -24,7 +24,7 @@ txt_start_x = col11.number_input("X:",
 txt_start_y = col12.number_input("Y:",
                                  format="%d",
                                  min_value=1,
-                                 max_value=MAX_GRID_WIDTH,
+                                 max_value=MAX_GRID_HEIGHT,
                                  value=problem.start[1])
 label_col21, label_col22 = st.sidebar.columns(2, gap="small")
 label_col21.caption("Goal")
@@ -37,7 +37,7 @@ txt_goal_x = col21.number_input("X:",
 txt_goal_y = col22.number_input("Y:",
                                 format="%d",
                                 min_value=1,
-                                max_value=MAX_GRID_WIDTH,
+                                max_value=MAX_GRID_HEIGHT,
                                 value=problem.goal[1])
 
 new_start = int(txt_start_x), int(txt_start_y)
