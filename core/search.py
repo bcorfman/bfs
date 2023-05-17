@@ -13,9 +13,6 @@ class GridSearchProblem:
         self.grid = add_border(load_grid(filename=grid_file))
         self.start = self._parseItem(kwargs.get('start'), self._findStart, 'S')
         self.goal = self._parseItem(kwargs.get('goal'), self._findGoal, 'G')
-        start_x, _ = self.start
-        goal_x, _ = self.goal
-        self.path_char = '<' if goal_x < start_x else '>'
 
     def _parseItem(self, proposed_item, calc_item, item_char):
         try:
@@ -87,14 +84,6 @@ class GridSearchProblem:
             if self.grid[y][x] != OFF_GRID:
                 successors.append((new_x, new_y))
         return successors
-
-    def plotSolution(self, path):
-        output = ""
-        for x, y in path[:-1]:
-            self._changeGridAtCoord(x, y, self.path_char)
-        for line in self.grid:
-            output += line.rstrip() + "\n"
-        return output
 
 
 def breadth_first_search(problem):
