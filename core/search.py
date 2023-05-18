@@ -50,6 +50,9 @@ class GridSearchProblem:
     def _changeGridAtCoord(self, x, y, elem):
         self.grid[y] = self.grid[y][:x] + elem + self.grid[y][x + 1:]
 
+    def getGridHeight(self):
+        return len(self.grid)
+
     def getGridPoints(self):
         pts = []
         for y, line in enumerate(self.grid):
