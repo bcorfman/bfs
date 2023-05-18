@@ -21,11 +21,13 @@ txt_start_x = col11.number_input("X:",
                                  min_value=1,
                                  max_value=MAX_GRID_WIDTH,
                                  value=problem.start[0])
-txt_start_y = col12.number_input("Y:",
-                                 format="%d",
-                                 min_value=1,
-                                 max_value=MAX_GRID_HEIGHT,
-                                 value=problem.start[1])
+# create a placeholder so we can redefine the Y input later once
+# the map height is known
+start_y_placeholder = col12.empty()
+txt_start_y = start_y_placeholder.number_input("Y:",
+                                               format="%d",
+                                               min_value=1,
+                                               value=problem.start[1])
 label_col21, label_col22 = st.sidebar.columns(2, gap="small")
 label_col21.caption("Goal")
 col21, col22 = st.sidebar.columns(2, gap="small")
@@ -34,16 +36,32 @@ txt_goal_x = col21.number_input("X:",
                                 min_value=1,
                                 max_value=MAX_GRID_WIDTH,
                                 value=problem.goal[0])
-txt_goal_y = col22.number_input("Y:",
-                                format="%d",
-                                min_value=1,
-                                max_value=MAX_GRID_HEIGHT,
-                                value=problem.goal[1])
+# create a placeholder so we can redefine the Y input later once
+# the map height is known
+goal_y_placeholder = col22.empty()
+txt_goal_y = goal_y_placeholder.number_input("Y:",
+                                             format="%d",
+                                             min_value=1,
+                                             value=problem.goal[1])
 
+# pulling start and goal coordinates from the text boxes since the
+# number widgets prevent input errors from occurring
 new_start = int(txt_start_x), int(txt_start_y)
 new_goal = int(txt_goal_x), int(txt_goal_y)
 problem = GridSearchProblem(start=new_start, goal=new_goal)
 soln = breadth_first_search(problem)
+# revise max Y inputs to actual grid height once it's been read in
+grid_height = problem.getGridHeight()
+txt_start_y = start_y_placeholder.number_input("Y:",
+                                               format="%d",
+                                               min_value=1,
+                                               max_value=grid_height,
+                                               value=problem.start[1])
+txt_goal_y = goal_y_placeholder.number_input("Y:",
+                                             format="%d",
+                                             min_value=1,
+                                             max_value=grid_height,
+                                             value=problem.goal[1])
 island = problem.getGridPoints()
 xs = [x for x, _ in island]
 ys = [y for _, y in island]
