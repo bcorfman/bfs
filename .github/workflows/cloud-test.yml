@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/playwright/python:v1.34.0-jammy
+    container: mcr.microsoft.com/playwright/python:latest
     steps:
       - uses: actions/checkout@v3
         with:
