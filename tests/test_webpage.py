@@ -12,6 +12,7 @@ def test_default_solution_path(page: Page):
     else:
         page.goto("https://bcorfman-bfs-main.streamlit.app/")
     locator = page.frame_locator("iframe[title=\"streamlitApp\"]")
+    locator.get_by_role("spinbutton", name="X:").first.press("Tab")
     element = locator.get_by_text("Path:")
     assert element is not None
     expect(element).to_contain_text(
