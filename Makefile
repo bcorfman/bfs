@@ -6,7 +6,7 @@ install:
 	poetry config virtualenvs.in-project true
 	poetry config virtualenvs.prefer-active-python true 
 	poetry install --no-root
-
+	poetry run playwright install
 test:
 	poetry run pytest --cov-branch --cov-report term --cov-report lcov --cov=core tests/
 	rm .coverage*
