@@ -15,7 +15,9 @@ jobs:
         with:
           ref: main
       - name: Install dependencies
-        run: make install
+        run: |
+            apk add --no-cache make
+            make install
       - name: Delay to allow Streamlit Cloud to update
         run: sleep 100
       - name: Test with pytest
