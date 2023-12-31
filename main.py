@@ -11,7 +11,7 @@ st.write(
     "Breadth-first search (BFS) is always complete and finds the shortest path to the goal, but it's also uninformed. "
     +
     "Compared to an informed heuristic search like A*, BFS can be a slower performer, but on "
-    + "small maps it does just fine.")
+    + "small maps it does fine.")
 grid_file = os.path.join('data', 'grid.txt')
 grid = add_border(load_grid(filename=grid_file))
 problem = GridSearchProblem()
