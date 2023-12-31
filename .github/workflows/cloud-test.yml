@@ -16,7 +16,8 @@ jobs:
           ref: main
       - name: Install dependencies
         run: |
-            apk add --no-cache make
+            apt-get -y update
+            apt-get -y install build-essential 
             make install
       - name: Delay to allow Streamlit Cloud to update
         run: sleep 100
