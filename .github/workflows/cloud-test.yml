@@ -19,8 +19,8 @@ jobs:
             apt-get -y update
             apt-get -y install build-essential 
             make install
-      - name: Delay to allow Streamlit Cloud to update
-        run: sleep 100
+      - name: Five-min delay to allow Streamlit Cloud to update
+        run: sleep 300
       - name: Test with pytest
         run: make test
       - name: Upload coverage to Codecov
