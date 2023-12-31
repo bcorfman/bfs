@@ -10,17 +10,17 @@ A non-trivial Python DevOps project, implementing search through a grid map.
 
 OR
 
-* Install [Python](https://www.python.org) 3.9 or higher
+* Install [Python](https://www.python.org) 3.10 or higher
 * Install [Poetry](https://python-poetry.org)
-* At a command prompt in the project directory, type `poetry install` to set up dependencies
+* At a command prompt in the project directory, type `make install` to set up dependencies
 
-## To run the code
+## To run the project locally
 
-* In the terminal window, type `poetry run python main.py`.
+* In the terminal window, type `make run`.
 
 ## To run the tests
 
-* In the terminal window, type `poetry run pytest`.
+* In the terminal window, type `make test`.
 
 ## Visit the deployed webpage
 
