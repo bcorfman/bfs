@@ -1,24 +1,25 @@
+SHELL := env PYTHON_VERSION=$(PYTHON_VERSION) /bin/bash
 .SILENT: install test lint format
+PYTHON_VERSION ?= 3.10
 
 install:
-	python -m pip install --upgrade pip
-	pip install poetry
-	poetry config virtualenvs.in-project true
-	poetry config virtualenvs.prefer-active-python true 
-	poetry install --no-root
-	poetry run playwright install
+	curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+	$(HOME)/.rye/shims/rye pin $(PYTHON_VERSION)
+	$(HOME)/.rye/shims/rye sync
+	$(HOME)/.rye/shims/rye run playwright install
+
 test:
-	poetry run pytest --cov-branch --cov-report term --cov-report lcov --cov=core tests/
+	$(HOME)/.rye/shims/rye run pytest --cov-branch --cov-report term --cov=core tests/
 	rm .coverage*
 
 lint:
-	poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-	poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+	$(HOME)/.rye/shims/rye run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+	$(HOME)/.rye/shims/rye run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
 format:
-	poetry run yapf --in-place --recursive --style pep8 *.py
+	$(HOME)/.rye/shims/rye run yapf --in-place --recursive main.py core tests
 
 run:
-	poetry run streamlit run main.py
+	$(HOME)/.rye/shims/rye run streamlit run main.py
 	
 all: install lint test
