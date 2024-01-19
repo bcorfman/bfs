@@ -1,7 +1,5 @@
 # Breadth-first search
 
-[![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=411397866&machine=standardLinux32gb&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=EastUs)
-
 A non-trivial Python DevOps project, implementing search through a grid map. 
 
 ## Prerequisites
