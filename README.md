@@ -4,17 +4,11 @@ A non-trivial Python DevOps project, implementing search through a grid map.
 
 ## Prerequisites
 
-* Click on the *Open with GitHub Codespaces* badge above to launch the project in a browser or on your desktop inside Visual Studio Code.
-
-OR
-
-* Install [Python](https://www.python.org) 3.10 or higher
-* Install [Poetry](https://python-poetry.org)
-* At a command prompt in the project directory, type `make install` to set up dependencies
+* At a command prompt in the project directory, type `make install` to set up the project
 
 ## To run the project locally
 
-* In the terminal window, type `make run`.
+* In the terminal window, type `make run` and follow the instructions to point your browser to the provided URL.
 
 ## To run the tests
 
