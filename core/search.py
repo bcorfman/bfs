@@ -3,16 +3,16 @@ from collections import deque
 
 from core.parser import add_border, load_grid
 
-OFF_GRID = ' '
+OFF_GRID = " "
 
 
 class GridSearchProblem:
 
     def __init__(self, **kwargs):
-        grid_file = kwargs.get('filename') or os.path.join('data', 'grid.txt')
+        grid_file = kwargs.get("filename") or os.path.join("data", "grid.txt")
         self.grid = add_border(load_grid(filename=grid_file))
-        self.start = self._parseItem(kwargs.get('start'), self._findStart, 'S')
-        self.goal = self._parseItem(kwargs.get('goal'), self._findGoal, 'G')
+        self.start = self._parseItem(kwargs.get("start"), self._findStart, "S")
+        self.goal = self._parseItem(kwargs.get("goal"), self._findGoal, "G")
 
     def _parseItem(self, proposed_item, calc_item, item_char):
         try:
@@ -22,7 +22,7 @@ class GridSearchProblem:
             _ = self.grid[py][px]
             if self.grid[py][px] != OFF_GRID:
                 ox, oy = calc_item()
-                self._changeGridAtCoord(ox, oy, '*')
+                self._changeGridAtCoord(ox, oy, "*")
                 self._changeGridAtCoord(px, py, item_char)
             final_item = px, py
         except (TypeError, ValueError):
@@ -35,10 +35,10 @@ class GridSearchProblem:
         return final_item
 
     def _findStart(self):
-        return self._findElem('S')
+        return self._findElem("S")
 
     def _findGoal(self):
-        return self._findElem('G')
+        return self._findElem("G")
 
     def _findElem(self, elem):
         for y, line in enumerate(self.grid):

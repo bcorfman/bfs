@@ -13,17 +13,17 @@ def test_on_grid_with_bad_location():
 @pytest.mark.unit
 def test_parse_item_without_proposed_start_location():
     problem = GridSearchProblem()
-    start = problem._parseItem(None, problem._findStart, 'S')
+    start = problem._parseItem(None, problem._findStart, "S")
     assert start == (15, 5)
-    assert problem.grid[5][15] == 'S'
+    assert problem.grid[5][15] == "S"
 
 
 @pytest.mark.unit
 def test_parse_item_with_proposed_start_location():
     problem = GridSearchProblem()
-    start = problem._parseItem((16, 5), problem._findStart, 'S')
+    start = problem._parseItem((16, 5), problem._findStart, "S")
     assert start == (16, 5)
-    assert problem.grid[5][16] == 'S'
+    assert problem.grid[5][16] == "S"
 
 
 @pytest.mark.unit
