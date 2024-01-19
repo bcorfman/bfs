@@ -9,14 +9,17 @@ install:
 	$(HOME)/.rye/shims/rye run playwright install
 
 test:
-	$(HOME)/.rye/shims/rye run pytest --cov-branch --cov-report term --cov=core tests/
-	rm .coverage*
+	$(HOME)/.rye/shims/rye run pytest -m unit --cov-branch --cov-report term --cov=core tests/
+	rm -f .coverage
+
+cloudtest:
+	$(HOME)/.rye/shims/rye run pytest -m system tests/
 
 lint:
-	$(HOME)/.rye/shims/rye run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-	$(HOME)/.rye/shims/rye run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+	$(HOME)/.rye/shims/rye run pylint main.py ./core
 
 format:
+	$(HOME)/.rye/shims/rye run black main.py core tests
 	$(HOME)/.rye/shims/rye run yapf --in-place --recursive main.py core tests
 
 run:
