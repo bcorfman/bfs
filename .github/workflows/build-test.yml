@@ -27,3 +27,4 @@ jobs:
       - name: Test with Pytest
         run: |
           make test
+          make cloudtest
