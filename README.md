@@ -2,6 +2,8 @@
 
 A non-trivial Python DevOps project, implementing search through a grid map.
 
+<img src="data/screenshot.png">
+
 ## Prerequisites
 
 * At a command prompt in the project directory, type `make install` to set up the project
