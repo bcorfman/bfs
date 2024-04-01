@@ -2,11 +2,16 @@ SHELL := env PYTHON_VERSION=$(PYTHON_VERSION) /bin/bash
 .SILENT: install test lint format
 PYTHON_VERSION ?= 3.10
 
+cloudinstall:
+	poetry install
+
 install:
 	curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
 	$(HOME)/.rye/shims/rye pin $(PYTHON_VERSION)
 	$(HOME)/.rye/shims/rye sync 
+	$(HOME)/.rye/shims/rye run playwright install-deps
 	$(HOME)/.rye/shims/rye run playwright install
+
 
 test:
 	$(HOME)/.rye/shims/rye run pytest -m unit --cov-branch --cov-report term --cov=core tests/

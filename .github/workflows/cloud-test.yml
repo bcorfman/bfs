@@ -18,7 +18,7 @@ jobs:
         run: |
             apt-get -y update
             apt-get -y install build-essential 
-            make install
+            make cloudinstall
       - name: Five-min delay to allow Streamlit Cloud to update
         run: sleep 300
       - name: Test with pytest
