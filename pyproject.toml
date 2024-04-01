@@ -11,6 +11,16 @@ license = "MIT"
 readme = "README.md"
 requires-python = ">= 3.10"
 
+[tool.poetry]
+name = "test"
+version = "0.1.0"
+description = ""
+authors = ["Brandon Corfman <bcorfman@fastmail.fm>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
 [tool.rye]
 managed = true
 dev-dependencies = [
