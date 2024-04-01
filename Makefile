@@ -3,6 +3,7 @@ SHELL := env PYTHON_VERSION=$(PYTHON_VERSION) /bin/bash
 PYTHON_VERSION ?= 3.10
 
 cloudinstall:
+	curl -sSL https://install.python-poetry.org | python3 -
 	poetry install
 
 install:
