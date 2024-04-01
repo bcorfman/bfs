@@ -2,6 +2,10 @@ SHELL := env PYTHON_VERSION=$(PYTHON_VERSION) /bin/bash
 .SILENT: install test lint format
 PYTHON_VERSION ?= 3.10
 
+cloudinstall:
+	poetry install
+	playwright install
+
 install:
 	curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
 	$(HOME)/.rye/shims/rye pin $(PYTHON_VERSION)
