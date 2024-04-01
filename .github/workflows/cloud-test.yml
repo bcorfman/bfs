@@ -22,6 +22,6 @@ jobs:
       - name: Five-min delay to allow Streamlit Cloud to update
         run: sleep 300
       - name: Test with pytest
-        run: make test
+        run: make cloudtest
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
