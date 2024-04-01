@@ -5,7 +5,7 @@ PYTHON_VERSION ?= 3.10
 install:
 	curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
 	$(HOME)/.rye/shims/rye pin $(PYTHON_VERSION)
-	$(HOME)/.rye/shims/rye sync
+	$(HOME)/.rye/shims/rye sync 
 	$(HOME)/.rye/shims/rye run playwright install
 
 test:
