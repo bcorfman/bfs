@@ -4,8 +4,7 @@ PYTHON_VERSION ?= 3.10
 
 cloudinstall:
 	curl -sSL https://install.python-poetry.org | python3 -
-	export PATH="$(HOME)/.local/bin:$(PATH)"
-	poetry install
+	$(HOME)/.local/bin/poetry install
 
 install:
 	curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
