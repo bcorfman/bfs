@@ -19,7 +19,7 @@ test:
 	rm -f .coverage
 
 cloudtest:
-	$(HOME)/.local/bin/poetrye run pytest -m system tests/
+	$(HOME)/.local/bin/poetry run pytest -m system tests/
 
 lint:
 	$(HOME)/.rye/shims/rye run pylint main.py ./core
