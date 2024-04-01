@@ -10,7 +10,7 @@ install:
 	$(HOME)/.rye/shims/rye pin $(PYTHON_VERSION)
 	$(HOME)/.rye/shims/rye sync 
 	$(HOME)/.rye/shims/rye run playwright install
-        $(HOME)/.rye/shims/rue run playwright install-deps
+	$(HOME)/.rye/shims/rue run playwright install-deps
 
 test:
 	$(HOME)/.rye/shims/rye run pytest -m unit --cov-branch --cov-report term --cov=core tests/
