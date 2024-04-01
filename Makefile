@@ -4,7 +4,6 @@ PYTHON_VERSION ?= 3.10
 
 cloudinstall:
 	poetry install
-	playwright install
 
 install:
 	curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
